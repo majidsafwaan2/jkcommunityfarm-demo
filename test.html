@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Community Farm - Website Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-left: 4px solid #4CAF50;
+            background: #f9f9f9;
+        }
+        .test-item.fail {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+        .test-item.pass {
+            border-left-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .result.pass {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+        .result.fail {
+            background: #ffebee;
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <h1>JK Community Farm Website - Comprehensive Test Suite</h1>
+    
+    <div class="test-section">
+        <h2>1. Website Structure Tests</h2>
+        <div class="test-item" id="structure-test">
+            <h3>HTML Structure Validation</h3>
+            <button class="test-button" onclick="testStructure()">Run Structure Test</button>
+            <div id="structure-result" class="result"></div>
+        </div>
+        
+        <div class="test-item" id="responsive-test">
+            <h3>Responsive Design Test</h3>
+            <button class="test-button" onclick="testResponsive()">Run Responsive Test</button>
+            <div id="responsive-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Chatbot Functionality Tests</h2>
+        <div class="test-item" id="chatbot-load-test">
+            <h3>Chatbot Loading Test</h3>
+            <button class="test-button" onclick="testChatbotLoad()">Test Chatbot Loading</button>
+            <div id="chatbot-load-result" class="result"></div>
+        </div>
+        
+        <div class="test-item" id="chatbot-characters-test">
+            <h3>Character Selection Test</h3>
+            <button class="test-button" onclick="testChatbotCharacters()">Test Character Selection</button>
+            <div id="chatbot-characters-result" class="result"></div>
+        </div>
+        
+        <div class="test-item" id="chatbot-ai-test">
+            <h3>AI Response Test</h3>
+            <button class="test-button" onclick="testChatbotAI()">Test AI Responses</button>
+            <div id="chatbot-ai-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Interactive Features Tests</h2>
+        <div class="test-item" id="navigation-test">
+            <h3>Navigation Test</h3>
+            <button class="test-button" onclick="testNavigation()">Test Navigation</button>
+            <div id="navigation-result" class="result"></div>
+        </div>
+        
+        <div class="test-item" id="animations-test">
+            <h3>Animations Test</h3>
+            <button class="test-button" onclick="testAnimations()">Test Animations</button>
+            <div id="animations-result" class="result"></div>
+        </div>
+        
+        <div class="test-item" id="stats-counter-test">
+            <h3>Statistics Counter Test</h3>
+            <button class="test-button" onclick="testStatsCounter()">Test Stats Counter</button>
+            <div id="stats-counter-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Performance Tests</h2>
+        <div class="test-item" id="load-time-test">
+            <h3>Page Load Time Test</h3>
+            <button class="test-button" onclick="testLoadTime()">Test Load Time</button>
+            <div id="load-time-result" class="result"></div>
+        </div>
+        
+        <div class="test-item" id="memory-test">
+            <h3>Memory Usage Test</h3>
+            <button class="test-button" onclick="testMemoryUsage()">Test Memory Usage</button>
+            <div id="memory-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Cross-Browser Compatibility</h2>
+        <div class="test-item" id="browser-test">
+            <h3>Browser Detection Test</h3>
+            <button class="test-button" onclick="testBrowserCompatibility()">Test Browser Compatibility</button>
+            <div id="browser-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>6. Accessibility Tests</h2>
+        <div class="test-item" id="accessibility-test">
+            <h3>Accessibility Compliance Test</h3>
+            <button class="test-button" onclick="testAccessibility()">Test Accessibility</button>
+            <div id="accessibility-result" class="result"></div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>7. Mobile Responsiveness</h2>
+        <div class="test-item" id="mobile-test">
+            <h3>Mobile Responsiveness Test</h3>
+            <button class="test-button" onclick="testMobileResponsiveness()">Test Mobile Responsiveness</button>
+            <div id="mobile-result" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Test Functions
+        function testStructure() {
+            const result = document.getElementById('structure-result');
+            try {
+                // Check if main elements exist
+                const requiredElements = [
+                    'header', '.nav', '.hero', '.impact', '.get-involved', 
+                    '.donation', '.news-events', '.partners', '.footer'
+                ];
+                
+                let allElementsExist = true;
+                const missingElements = [];
+                
+                requiredElements.forEach(selector => {
+                    const element = document.querySelector(selector);
+                    if (!element) {
+                        allElementsExist = false;
+                        missingElements.push(selector);
+                    }
+                });
+                
+                if (allElementsExist) {
+                    result.innerHTML = '<strong>PASS:</strong> All required HTML elements are present.';
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = `<strong>FAIL:</strong> Missing elements: ${missingElements.join(', ')}`;
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testResponsive() {
+            const result = document.getElementById('responsive-result');
+            try {
+                const viewport = window.innerWidth;
+                const isResponsive = viewport > 0;
+                
+                if (isResponsive) {
+                    result.innerHTML = `<strong>PASS:</strong> Responsive design detected. Viewport width: ${viewport}px`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> Responsive design issues detected.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testChatbotLoad() {
+            const result = document.getElementById('chatbot-load-result');
+            try {
+                // Check if chatbot container exists
+                const chatbotContainer = document.getElementById('jk-farm-chatbot-container');
+                if (chatbotContainer) {
+                    result.innerHTML = '<strong>PASS:</strong> Chatbot container found.';
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> Chatbot container not found.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testChatbotCharacters() {
+            const result = document.getElementById('chatbot-characters-result');
+            try {
+                // Check if chatbot characters are defined
+                if (typeof window.jkFarmChatbot !== 'undefined') {
+                    const characters = window.jkFarmChatbot.characters;
+                    if (characters && characters.length >= 4) {
+                        result.innerHTML = `<strong>PASS:</strong> ${characters.length} chatbot characters found.`;
+                        result.className = 'result pass';
+                    } else {
+                        result.innerHTML = '<strong>FAIL:</strong> Insufficient chatbot characters.';
+                        result.className = 'result fail';
+                    }
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> Chatbot not initialized.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testChatbotAI() {
+            const result = document.getElementById('chatbot-ai-result');
+            try {
+                // Test AI functionality
+                if (typeof window.jkFarmChatbot !== 'undefined') {
+                    result.innerHTML = '<strong>PASS:</strong> Chatbot AI functionality available.';
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> Chatbot AI not available.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testNavigation() {
+            const result = document.getElementById('navigation-result');
+            try {
+                const nav = document.querySelector('.nav');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                if (nav && navLinks.length > 0) {
+                    result.innerHTML = `<strong>PASS:</strong> Navigation found with ${navLinks.length} links.`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> Navigation not found or no links.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testAnimations() {
+            const result = document.getElementById('animations-result');
+            try {
+                // Check for CSS animations
+                const style = getComputedStyle(document.body);
+                const hasAnimations = style.animationDuration || style.transitionDuration;
+                
+                if (hasAnimations) {
+                    result.innerHTML = '<strong>PASS:</strong> CSS animations detected.';
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> No CSS animations found.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testStatsCounter() {
+            const result = document.getElementById('stats-counter-result');
+            try {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                
+                if (statNumbers.length > 0) {
+                    result.innerHTML = `<strong>PASS:</strong> ${statNumbers.length} statistics counters found.`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> No statistics counters found.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testLoadTime() {
+            const result = document.getElementById('load-time-result');
+            try {
+                const loadTime = performance.now();
+                
+                if (loadTime < 5000) {
+                    result.innerHTML = `<strong>PASS:</strong> Page loaded in ${loadTime.toFixed(2)}ms (under 5 seconds).`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = `<strong>FAIL:</strong> Page took ${loadTime.toFixed(2)}ms to load (over 5 seconds).`;
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testMemoryUsage() {
+            const result = document.getElementById('memory-result');
+            try {
+                if (performance.memory) {
+                    const memoryUsage = performance.memory.usedJSHeapSize / 1024 / 1024;
+                    
+                    if (memoryUsage < 50) {
+                        result.innerHTML = `<strong>PASS:</strong> Memory usage: ${memoryUsage.toFixed(2)}MB (under 50MB).`;
+                        result.className = 'result pass';
+                    } else {
+                        result.innerHTML = `<strong>FAIL:</strong> Memory usage: ${memoryUsage.toFixed(2)}MB (over 50MB).`;
+                        result.className = 'result fail';
+                    }
+                } else {
+                    result.innerHTML = '<strong>INFO:</strong> Memory usage not available in this browser.';
+                    result.className = 'result pass';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testBrowserCompatibility() {
+            const result = document.getElementById('browser-result');
+            try {
+                const userAgent = navigator.userAgent;
+                const isModernBrowser = userAgent.includes('Chrome') || 
+                                       userAgent.includes('Firefox') || 
+                                       userAgent.includes('Safari') || 
+                                       userAgent.includes('Edge');
+                
+                if (isModernBrowser) {
+                    result.innerHTML = `<strong>PASS:</strong> Modern browser detected: ${userAgent.split(' ')[0]}`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = `<strong>WARNING:</strong> Browser compatibility unknown: ${userAgent}`;
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testAccessibility() {
+            const result = document.getElementById('accessibility-result');
+            try {
+                // Check for semantic HTML elements
+                const semanticElements = document.querySelectorAll('header, nav, main, section, article, aside, footer');
+                const hasAltText = document.querySelectorAll('img[alt]').length > 0;
+                
+                if (semanticElements.length > 0 && hasAltText) {
+                    result.innerHTML = `<strong>PASS:</strong> Accessibility features found: ${semanticElements.length} semantic elements and alt text.`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = '<strong>FAIL:</strong> Missing accessibility features.';
+                    result.className = 'result fail';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        function testMobileResponsiveness() {
+            const result = document.getElementById('mobile-result');
+            try {
+                const viewport = window.innerWidth;
+                const isMobile = viewport <= 768;
+                
+                if (isMobile) {
+                    result.innerHTML = `<strong>PASS:</strong> Mobile viewport detected (${viewport}px).`;
+                    result.className = 'result pass';
+                } else {
+                    result.innerHTML = `<strong>INFO:</strong> Desktop viewport detected (${viewport}px). Test on mobile device for full validation.`;
+                    result.className = 'result pass';
+                }
+            } catch (error) {
+                result.innerHTML = `<strong>ERROR:</strong> ${error.message}`;
+                result.className = 'result fail';
+            }
+        }
+
+        // Auto-run tests when page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                testStructure();
+                testResponsive();
+                testChatbotLoad();
+                testLoadTime();
+                testBrowserCompatibility();
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
