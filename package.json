@@ -1,0 +1,50 @@
+{
+  "name": "jkcommunityfarm-demo",
+  "version": "1.0.0",
+  "description": "A modern, responsive website clone of the JK Community Farm website with an integrated AI-powered chatbot specifically designed for community farming and food security.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "start": "python -m http.server 8000",
+    "build": "echo 'Static site - no build required'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'",
+    "deploy": "echo 'Deploy to your preferred hosting service'"
+  },
+  "keywords": [
+    "community-farming",
+    "food-security",
+    "chatbot",
+    "ai",
+    "responsive-design",
+    "modern-web",
+    "sustainable-agriculture",
+    "volunteer-management",
+    "education",
+    "nonprofit"
+  ],
+  "author": {
+    "name": "JK Community Farm Demo Team",
+    "email": "support@example.com",
+    "url": "https://github.com/majidsafwaan2/jkcommunityfarm-demo"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/majidsafwaan2/jkcommunityfarm-demo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/majidsafwaan2/jkcommunityfarm-demo/issues"
+  },
+  "homepage": "https://github.com/majidsafwaan2/jkcommunityfarm-demo#readme",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
